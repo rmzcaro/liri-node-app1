@@ -14,7 +14,10 @@ var client = new Twitter(myKeys.twitter);
 // GET statuses/ lookup
 client.get("statuses/user_timeline", function(error, tweets, response){
     if(error) throw error;
-    console.log(tweets);
+for (let i = 0; i < 3; i++) {
+        console.log(tweets[i].text);
+}
+
 })
 
 //  #2 `node liri.js spotify-this-song '<song name here>'`would show the info of 
