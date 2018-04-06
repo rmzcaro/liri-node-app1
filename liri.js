@@ -6,8 +6,12 @@ var myKeys =  require("./keys.js");
 console.log(myKeys);
 
 var Twitter = require("twitter");
+var Spotify = require("node-spotify-api");
+
 
 var client = new Twitter(myKeys.twitter);
+var spotify = new Spotify(myKeys.spotify);
+
 
 // Make it where liri takes in the command `my-tweets`
 // show last 20 tweets and when they were created
@@ -23,9 +27,20 @@ for (let i = 0; i < 3; i++) {
 //  #2 `node liri.js spotify-this-song '<song name here>'`would show the info of 
 // artist, song name, preview link, album where song is from
 // if no song, program will default to "the Sign" by Ace of Base
-// else {
-    console.log("The Sign by Ace of Base")
-// }
+
+spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
+    if ( err ) {
+        console.log('Error occurred: ' + err);
+    } else {
+        // console.log(data.tracks.items[0]);
+        console.log(data.tracks.items[0].artists[0].name);
+    }
+ 
+    // Do something with 'data' 
+});
+
+
+
 
 // #3 `node liri.js movie-this '<movie name here>'`
 // The following will show on terminal:
